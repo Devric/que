@@ -15,23 +15,24 @@ Que = (function() {
     var next, self;
     self = this.self;
     next = function() {
-      return self.run();
+      return self.step();
     };
     if (this.i < this.fn.length) {
-      this.fn[this.i++](next);
+      return this.fn[this.i++](next);
     }
-    return this.reset();
   };
 
   Que.prototype.run = function() {
+    var _results;
+    _results = [];
     while (this.i < this.fn.length) {
-      this.fn[this.i++]();
+      _results.push(this.fn[this.i++]());
     }
-    return this.reset();
+    return _results;
   };
 
   Que.prototype.reset = function() {
-    if (this.i = this.fn.length) {
+    if (this.i === this.fn.length) {
       return this.i = 0;
     }
   };

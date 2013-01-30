@@ -42,7 +42,10 @@ var loop = function(){
     setTimeout(function(){
         // choose step or just run though it
         step.step();
+        step.reset();
     }, 200)
 }; loop();
+
+// !! make sure you use reset, otherwise it won't do it again, reset will know when it should reset
 
 ```

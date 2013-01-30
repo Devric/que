@@ -11,11 +11,9 @@ class Que
   step: ->
     self = @self
     next = ->
-      self.run()
+      self.step()
 
     @fn[@i++](next) if @i < @fn.length
-
-    @reset()
 
 
   #==== non blocking
@@ -23,10 +21,8 @@ class Que
   run: ->
     @fn[@i++]() while @i < @fn.length
 
-    @reset()
-
 
   #= reset for loops
   #=================
   reset: ->
-    @i = 0 if @i = @fn.length
+    @i = 0 if @i == @fn.length
