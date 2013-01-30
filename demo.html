@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript" src="./que.js"></script>
+    <script type="text/javascript" src="./test/jquery.min.js"></script>
+    <script type="text/javascript" src="./test/jquery.mockjax.js"></script>
+
+    <script type="text/javascript">
+        $.mockjax({
+            url: '/api',
+            responseTime: 1050
+        });
+
+        (function(){
+            doo = function(next) { 
+                console.log('do');
+
+
+                $.ajax({
+                    url: '/api'
+                }).success(function(e,data){
+                    console.log(data)
+                    if ( next ) next();
+                });
+
+            }
+            it = function(next) {
+                console.log('it');
+
+                if ( next ) next();
+            }
+            all = function(next) {
+                console.log('all'); 
+
+                if ( next ) next();
+            }
+
+            // simple demo
+            new Que(doo, it, all).run();
+
+            /* 
+            // loop demo
+            var setup = new Que(doo, it, all);
+            
+            var loop = function(){
+                setTimeout(function(){
+                    setup.step()
+                    loop();
+                }, 4000);
+            }; loop();
+            */
+
+        })()
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
